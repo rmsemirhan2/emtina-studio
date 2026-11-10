@@ -1,83 +1,742 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="tr" class="scroll-smooth dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emtina Studio | Dijital Çözümler & Yazılım</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emtina Studio | Ultra Modern SaaS, Mobil Oyun & Full-Stack Mimarisi</title>
+  <meta name="description" content="Emtina Studio; yenilikçi SaaS platformları, Godot mobil oyunları ve kurumsal full-stack web mimarileri geliştiren bağımsız dijital stüdyo.">
+  <meta name="keywords" content="Emtina Studio, Full-Stack Developer, SaaS Development, Godot Engine, Next.js, Laravel, Tailwind CSS, Dark-Tech">
+  <meta name="author" content="Emtina Studio">
+
+  <!-- OpenGraph / Social Meta Tags -->
+  <meta property="og:title" content="Emtina Studio | Ultra Modern Digital Engineering">
+  <meta property="og:description" content="SaaS, Mobile Games & High-Performance Web Systems engineered with cyber speed and clean code.">
+  <meta property="og:url" content="https://emtinastudio.com">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#09090b',
+            cardDark: '#18181b',
+            cardHover: '#202025',
+            neonCyan: '#06b6d4',
+            neonPurple: '#8b5cf6',
+            neonSky: '#38bdf8'
+          },
+          fontFamily: {
+            heading: ['Space Grotesk', 'Inter', 'sans-serif'],
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- Alpine.js & Main Script -->
+  <script defer src="assets/js/main.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white">
 
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <span class="text-xl font-bold tracking-wider text-white">EMTINA<span class="text-indigo-500">STUDIO</span></span>
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
-                <a href="#hizmetler" class="hover:text-white transition">Hizmetler</a>
-                <a href="#projeler" class="hover:text-white transition">Projeler</a>
-                <a href="#iletisim" class="hover:text-white transition">İletişim</a>
-            </nav>
-            <a href="#iletisim" class="bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition shadow-lg shadow-indigo-600/20">İletişime Geç</a>
+<body class="bg-obsidian text-zinc-100 min-h-screen relative selection:bg-cyan-500/30 selection:text-cyan-200" x-data>
+
+  <!-- Background Interactive Canvas (Nodes / Network Particles) -->
+  <canvas id="cyber-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <!-- Ambient Glowing Orbs -->
+  <div class="ambient-glow-1 top-10 -left-20"></div>
+  <div class="ambient-glow-2 top-[35%] -right-20"></div>
+  <div class="ambient-glow-1 bottom-40 left-1/3 opacity-30"></div>
+
+  <!-- Cyber Grid Background Overlay -->
+  <div class="fixed inset-0 cyber-grid-bg pointer-events-none z-0 opacity-60"></div>
+
+  <!-- =====================================================================
+       HEADER / NAVIGATION BAR
+       ===================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-xl bg-obsidian/80 border-b border-zinc-800/60"
+          x-data="{ scrolled: false }" 
+          @scroll.window="scrolled = (window.pageYOffset > 20)">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo Yapılandırması: İkon (Neon E - Işıltısız, Net) + EMTINA (font-black, text-white) + STUDIO (font-extralight, text-cyan-400) -->
+      <a href="#hero" class="flex items-center gap-3.5 group cursor-pointer focus:outline-none">
+        <div class="relative flex items-center justify-center">
+          <img src="assets/images/logo.png" 
+               alt="Emtina Studio Logo" 
+               class="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
         </div>
-    </header>
+        
+        <div class="flex items-baseline tracking-tight select-none">
+          <span class="font-heading font-black text-2xl text-white tracking-wider">EMTINA</span>
+          <span class="font-heading font-extralight text-2xl text-cyan-400 tracking-widest ml-1">STUDIO</span>
+        </div>
+      </a>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center pt-20 px-6 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.15)_0,transparent_70%)]"></div>
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <span class="inline-block bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-3 py-1.5 rounded-full mb-6 border border-indigo-500/20">Digital Entrepreneurship & Software</span>
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6">
-                Dijital Dünyadaki <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Güçlü Vitrininiz</span>
-            </h1>
-            <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed">
-                Modern web teknolojileri, yazılım çözümleri ve yaratıcı dijital girişimlerle markanızı geleceğe taşıyoruz.
-            </p>
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#projeler" class="w-full sm:w-auto bg-white text-slate-950 font-semibold px-8 py-3.5 rounded-full hover:bg-slate-200 transition">Projelerimizi İncele</a>
-                <a href="#iletisim" class="w-full sm:w-auto bg-slate-900 border border-slate-800 text-slate-300 font-semibold px-8 py-3.5 rounded-full hover:bg-slate-800 hover:text-white transition">Bize Ulaşın</a>
+      <!-- Desktop Navigation Menu (Bütçe Robotu Kaldırıldı) -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-300">
+        <a href="#about" class="hover:text-cyan-400 transition-colors duration-200" x-text="$store.app.t('nav_about')"></a>
+        <a href="#services" class="hover:text-cyan-400 transition-colors duration-200" x-text="$store.app.t('nav_services')"></a>
+        <a href="#portfolio" class="hover:text-cyan-400 transition-colors duration-200" x-text="$store.app.t('nav_portfolio')"></a>
+        <a href="#process" class="hover:text-cyan-400 transition-colors duration-200" x-text="$store.app.t('nav_process')"></a>
+        <a href="#contact" class="hover:text-cyan-400 transition-colors duration-200" x-text="$store.app.t('nav_contact')"></a>
+      </nav>
+
+      <!-- Header Actions: Language Switcher & CTA -->
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Language Switcher Toggle (TR / EN) -->
+        <button @click="$store.app.toggleLang()" 
+                type="button"
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/80 hover:border-cyan-500/50 hover:bg-zinc-800/80 transition-all duration-200 text-xs font-mono font-semibold"
+                :title="$store.app.lang === 'tr' ? 'Switch to English' : 'Türkçe Dil Seçeneği'">
+          <i data-lucide="globe" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span :class="$store.app.lang === 'tr' ? 'text-cyan-400 font-bold' : 'text-zinc-500'">TR</span>
+          <span class="text-zinc-600">/</span>
+          <span :class="$store.app.lang === 'en' ? 'text-cyan-400 font-bold' : 'text-zinc-500'">EN</span>
+        </button>
+
+        <!-- CTA Button -->
+        <a href="#contact" 
+           class="btn-cyber-primary px-5 py-2.5 rounded-xl text-sm font-heading font-semibold shadow-lg flex items-center gap-2 group">
+          <span x-text="$store.app.t('nav_cta')"></span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button @click="$store.app.toggleLang()" 
+                type="button" 
+                class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-xs font-mono font-bold text-cyan-400">
+          <span x-text="$store.app.lang.toUpperCase()"></span>
+        </button>
+
+        <button @click="$store.app.isMobileMenuOpen = !$store.app.isMobileMenuOpen"
+                type="button" 
+                class="p-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white focus:outline-none">
+          <i data-lucide="menu" class="w-6 h-6" x-show="!$store.app.isMobileMenuOpen"></i>
+          <i data-lucide="x" class="w-6 h-6" x-show="$store.app.isMobileMenuOpen" style="display: none;"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div x-show="$store.app.isMobileMenuOpen" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-4"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 -translate-y-4"
+         @click.away="$store.app.isMobileMenuOpen = false"
+         class="md:hidden glass-panel border-b border-zinc-800 px-6 py-6 space-y-4"
+         style="display: none;">
+      <a href="#about" @click="$store.app.isMobileMenuOpen = false" class="block text-base font-medium text-zinc-300 hover:text-cyan-400" x-text="$store.app.t('nav_about')"></a>
+      <a href="#services" @click="$store.app.isMobileMenuOpen = false" class="block text-base font-medium text-zinc-300 hover:text-cyan-400" x-text="$store.app.t('nav_services')"></a>
+      <a href="#portfolio" @click="$store.app.isMobileMenuOpen = false" class="block text-base font-medium text-zinc-300 hover:text-cyan-400" x-text="$store.app.t('nav_portfolio')"></a>
+      <a href="#process" @click="$store.app.isMobileMenuOpen = false" class="block text-base font-medium text-zinc-300 hover:text-cyan-400" x-text="$store.app.t('nav_process')"></a>
+      <a href="#contact" @click="$store.app.isMobileMenuOpen = false" class="block text-base font-medium text-zinc-300 hover:text-cyan-400" x-text="$store.app.t('nav_contact')"></a>
+      <div class="pt-4 border-t border-zinc-800 flex items-center justify-between">
+        <a href="#contact" @click="$store.app.isMobileMenuOpen = false" class="w-full text-center btn-cyber-primary py-3 rounded-xl text-sm font-semibold">
+          <span x-text="$store.app.t('nav_cta')"></span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- =====================================================================
+       HERO SECTION WITH DYNAMIC TYPEWRITER & CYBERPUNK VIBE
+       ===================================================================== -->
+  <section id="hero" class="relative min-h-screen pt-32 pb-20 flex items-center justify-center overflow-hidden z-10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- Cyber Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-950/20 backdrop-blur-md mb-8 animate-soft-float">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 pulse-dot"></span>
+        <span class="text-xs font-mono uppercase tracking-widest text-cyan-300 font-semibold" x-text="$store.app.t('hero_badge')"></span>
+        <span class="text-zinc-600">|</span>
+        <span class="text-xs font-mono text-cyan-400">emtinastudio.com</span>
+      </div>
+
+      <!-- Main Headline with Typewriter -->
+      <h1 class="font-heading font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight text-white leading-[1.15] mb-6"
+          x-data="heroTypewriter">
+        <span class="block" x-text="$store.app.t('hero_title_prefix')"></span>
+        <span class="block mt-2 min-h-[1.3em]">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-purple-500 text-glow-cyan" x-text="text"></span>
+          <span class="typewriter-cursor text-cyan-400">&nbsp;</span>
+        </span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="max-w-3xl mx-auto text-base sm:text-xl text-zinc-400 font-normal leading-relaxed mb-10" 
+         x-text="$store.app.t('hero_subtitle')">
+      </p>
+
+      <!-- Hero Call-To-Action Buttons (Bütçe robotu yerine İletişime Geç) -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+        <a href="#portfolio" 
+           class="w-full sm:w-auto btn-cyber-primary px-8 py-4 rounded-xl text-base font-heading font-bold shadow-xl flex items-center justify-center gap-3">
+          <i data-lucide="code-2" class="w-5 h-5"></i>
+          <span x-text="$store.app.t('hero_cta_projects')"></span>
+        </a>
+        <a href="#contact" 
+           class="w-full sm:w-auto btn-cyber-outline px-8 py-4 rounded-xl text-base font-heading font-semibold flex items-center justify-center gap-3">
+          <i data-lucide="mail" class="w-5 h-5 text-cyan-400"></i>
+          <span x-text="$store.app.t('hero_cta_contact')"></span>
+        </a>
+      </div>
+
+      <!-- Hero Stats Bar -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto pt-8 border-t border-zinc-800/80">
+        <div class="p-4 rounded-xl glass-panel text-center">
+          <div class="text-2xl sm:text-3xl font-heading font-black text-cyan-400" x-text="$store.app.t('hero_stat_1_val')"></div>
+          <div class="text-xs text-zinc-400 mt-1 font-mono" x-text="$store.app.t('hero_stat_1_lbl')"></div>
+        </div>
+        <div class="p-4 rounded-xl glass-panel text-center">
+          <div class="text-2xl sm:text-3xl font-heading font-black text-purple-400" x-text="$store.app.t('hero_stat_2_val')"></div>
+          <div class="text-xs text-zinc-400 mt-1 font-mono" x-text="$store.app.t('hero_stat_2_lbl')"></div>
+        </div>
+        <div class="p-4 rounded-xl glass-panel text-center">
+          <div class="text-2xl sm:text-3xl font-heading font-black text-cyan-400" x-text="$store.app.t('hero_stat_3_val')"></div>
+          <div class="text-xs text-zinc-400 mt-1 font-mono" x-text="$store.app.t('hero_stat_3_lbl')"></div>
+        </div>
+        <div class="p-4 rounded-xl glass-panel text-center">
+          <div class="text-2xl sm:text-3xl font-heading font-black text-purple-400" x-text="$store.app.t('hero_stat_4_val')"></div>
+          <div class="text-xs text-zinc-400 mt-1 font-mono" x-text="$store.app.t('hero_stat_4_lbl')"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       ABOUT ME SECTION & PHOTO INTEGRATION (YALIN & ROZETSIZ FOTOĞRAF KARTI)
+       ===================================================================== -->
+  <section id="about" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Tag -->
+      <div class="flex items-center gap-2 mb-3">
+        <span class="h-px w-8 bg-cyan-500"></span>
+        <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest font-semibold" x-text="$store.app.t('about_tag')"></span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        
+        <!-- Sol Sütun: Kişisel portre fotoğrafı yuvarlatılmış kavisli kenarlarla, 
+             buzlu cam efektli çerçeve ve gradient kenar ile. 
+             (Kullanıcı isteği: Altındaki yazılar, rozetler, kurucu/full-stack vs. tamamen kaldırıldı) -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          
+          <!-- Cyber Decorative Glow & Shapes behind image -->
+          <div class="absolute -inset-4 bg-gradient-to-tr from-cyan-500/20 via-purple-600/20 to-transparent rounded-3xl blur-2xl opacity-70"></div>
+          
+          <!-- Outer Frosted Glass Card Frame with Mor/Siyan Gradient Accent -->
+          <div class="relative p-3 rounded-3xl backdrop-blur-md bg-zinc-900/60 border border-zinc-700/50 shadow-2xl overflow-hidden max-w-sm sm:max-w-md w-full"
+               style="background: linear-gradient(135deg, rgba(24, 24, 27, 0.8) 0%, rgba(9, 9, 11, 0.9) 100%);">
+            
+            <!-- Neon Border Accent Lines -->
+            <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+
+            <!-- Clean Image Container with Rounded Corners (No badges, no overlay text) -->
+            <div class="relative overflow-hidden rounded-2xl group">
+              <img src="assets/images/founder.jpg" 
+                   alt="Founder" 
+                   class="w-full h-auto object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105 filter brightness-95 contrast-105" />
             </div>
-        </div>
-    </section>
 
-    <!-- Services Section -->
-    <section id="hizmetler" class="py-24 px-6 border-t border-slate-900 bg-slate-900/40">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold text-white mb-4">Neler Yapıyoruz?</h2>
-                <p class="text-slate-400">En güncel teknolojilerle anahtar teslim dijital çözümler üretiyoruz.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition">
-                    <div class="w-12 h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center text-indigo-400 font-bold mb-6 text-xl">01</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Full-Stack Geliştirme</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Modern web uygulamaları, performans odaklı ön yüzler ve güçlü arka uç sistemleri.</p>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition">
-                    <div class="w-12 h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center text-indigo-400 font-bold mb-6 text-xl">02</div>
-                    <h3 class="text-xl font-bold text-white mb-3">UI/UX & Marka Kimliği</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Kullanıcı dostu arayüz tasarımları, kurumsal kimlik ve dijital pazarlama materyalleri.</p>
-                </div>
-                <div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl hover:border-indigo-500/50 transition">
-                    <div class="w-12 h-12 bg-indigo-600/10 rounded-xl flex items-center justify-center text-indigo-400 font-bold mb-6 text-xl">03</div>
-                    <h3 class="text-xl font-bold text-white mb-3">Dijital Ürünler & Oyun</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Mobil oyun projeleri, gamified eğitim platformları ve özel web girişimleri.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- Footer -->
-    <footer id="iletisim" class="py-12 px-6 border-t border-slate-900 text-center text-slate-500 text-sm">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p>&copy; 2026 Emtina Studio. Tüm hakları saklıdır.</p>
-            <p>emtinastudio.com</p>
         </div>
-    </footer>
+
+        <!-- Sağ Sütun: Biyografi metni, yetkinlik etiketleri ve "İletişime Geç" butonu -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <h2 class="font-heading font-black text-3xl sm:text-4xl text-white tracking-tight leading-tight"
+              x-text="$store.app.t('about_title')">
+          </h2>
+
+          <div class="space-y-4 text-zinc-300 text-base sm:text-lg leading-relaxed">
+            <p x-text="$store.app.t('about_bio_1')"></p>
+            <p class="text-zinc-400" x-text="$store.app.t('about_bio_2')"></p>
+          </div>
+
+          <!-- Competency / Skill Tags -->
+          <div class="pt-2">
+            <h3 class="text-xs font-mono uppercase tracking-wider text-cyan-400 mb-3 font-semibold" 
+                x-text="$store.app.t('about_skills_title')"></h3>
+            
+            <div class="flex flex-wrap gap-2.5">
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Laravel 11</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Next.js 14 / React</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Godot 4 Engine</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Tailwind CSS</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Vue.js 3</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">TypeScript</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">PostgreSQL & Redis</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Docker & DevOps</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Python</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">RESTful & GraphQL</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">WebSockets</span>
+              <span class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-800 text-xs font-mono text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-colors">Cloud / AWS</span>
+            </div>
+          </div>
+
+          <!-- CTA Buttons -->
+          <div class="pt-4 flex flex-wrap items-center gap-4">
+            <a href="#contact" 
+               class="btn-cyber-primary px-7 py-3.5 rounded-xl text-sm font-heading font-semibold flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+              <span x-text="$store.app.t('about_cta_contact')"></span>
+            </a>
+            <a href="#portfolio" 
+               class="btn-cyber-outline px-6 py-3.5 rounded-xl text-sm font-heading font-semibold flex items-center gap-2">
+              <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+              <span x-text="$store.app.t('about_cta_projects')"></span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       SERVICES SECTION WITH SPOTLIGHT CARDS
+       ===================================================================== -->
+  <section id="services" class="py-24 relative z-10 bg-zinc-950/40 border-y border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/20 bg-cyan-950/30 text-xs font-mono text-cyan-400 mb-3">
+          <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+          <span x-text="$store.app.t('services_tag')"></span>
+        </div>
+        <h2 class="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight mb-4" 
+            x-text="$store.app.t('services_title')"></h2>
+        <p class="text-zinc-400 text-base sm:text-lg" 
+           x-text="$store.app.t('services_subtitle')"></p>
+      </div>
+
+      <!-- Spotlight Services Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Service 1: SaaS -->
+        <div class="spotlight-card p-8 rounded-2xl bg-cardDark border border-zinc-800 transition-all duration-300 hover:border-cyan-500/40">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6">
+            <i data-lucide="layers" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3" x-text="$store.app.t('service_1_title')"></h3>
+          <p class="text-zinc-400 text-sm leading-relaxed" x-text="$store.app.t('service_1_desc')"></p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-cyan-400">
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Multi-Tenancy</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Billing APIs</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">PostgreSQL</span>
+          </div>
+        </div>
+
+        <!-- Service 2: Mobile Game (Godot) -->
+        <div class="spotlight-card p-8 rounded-2xl bg-cardDark border border-zinc-800 transition-all duration-300 hover:border-purple-500/40">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6">
+            <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3" x-text="$store.app.t('service_2_title')"></h3>
+          <p class="text-zinc-400 text-sm leading-relaxed" x-text="$store.app.t('service_2_desc')"></p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-purple-400">
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Godot 4 Engine</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Real-Time Netcode</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">iOS & Android</span>
+          </div>
+        </div>
+
+        <!-- Service 3: Full-Stack Web -->
+        <div class="spotlight-card p-8 rounded-2xl bg-cardDark border border-zinc-800 transition-all duration-300 hover:border-cyan-500/40">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6">
+            <i data-lucide="layout-grid" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3" x-text="$store.app.t('service_3_title')"></h3>
+          <p class="text-zinc-400 text-sm leading-relaxed" x-text="$store.app.t('service_3_desc')"></p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-cyan-400">
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Next.js 14</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Laravel 11</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Tailwind CSS</span>
+          </div>
+        </div>
+
+        <!-- Service 4: API & Microservices -->
+        <div class="spotlight-card p-8 rounded-2xl bg-cardDark border border-zinc-800 transition-all duration-300 hover:border-cyan-500/40">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6">
+            <i data-lucide="server" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3" x-text="$store.app.t('service_4_title')"></h3>
+          <p class="text-zinc-400 text-sm leading-relaxed" x-text="$store.app.t('service_4_desc')"></p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-cyan-400">
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Docker</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Redis Caching</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">WebSockets</span>
+          </div>
+        </div>
+
+        <!-- Service 5: UI/UX & Dark-Tech Design -->
+        <div class="spotlight-card p-8 rounded-2xl bg-cardDark border border-zinc-800 transition-all duration-300 hover:border-purple-500/40">
+          <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-6">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3" x-text="$store.app.t('service_5_title')"></h3>
+          <p class="text-zinc-400 text-sm leading-relaxed" x-text="$store.app.t('service_5_desc')"></p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-purple-400">
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Figma Design System</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Micro-Interactions</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">High Conversion</span>
+          </div>
+        </div>
+
+        <!-- Service 6: Consulting & Optimization -->
+        <div class="spotlight-card p-8 rounded-2xl bg-cardDark border border-zinc-800 transition-all duration-300 hover:border-cyan-500/40">
+          <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6">
+            <i data-lucide="gauge" class="w-6 h-6"></i>
+          </div>
+          <h3 class="font-heading font-bold text-xl text-white mb-3" x-text="$store.app.t('service_6_title')"></h3>
+          <p class="text-zinc-400 text-sm leading-relaxed" x-text="$store.app.t('service_6_desc')"></p>
+          <div class="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-cyan-400">
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Query Indexing</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Latency Cut</span>
+            <span class="bg-zinc-900 px-2.5 py-1 rounded border border-zinc-800">Security Audit</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       PORTFOLIO SECTION (TACVEEM, eBAKIM, RIVALKICK, O.D.A.K.)
+       (Kullanıcı İsteği: Görseller üretildi, Canlı Önizleme & Detaylı İncele butonları/modalları kaldırıldı)
+       ===================================================================== -->
+  <section id="portfolio" class="py-24 relative z-10" x-data="portfolioSection">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header & Filter Tabs -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-950/20 text-xs font-mono text-purple-300 mb-3">
+            <i data-lucide="code" class="w-3.5 h-3.5"></i>
+            <span x-text="$store.app.t('portfolio_tag')"></span>
+          </div>
+          <h2 class="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight" 
+              x-text="$store.app.t('portfolio_title')"></h2>
+          <p class="text-zinc-400 text-base sm:text-lg mt-2 max-w-2xl" 
+             x-text="$store.app.t('portfolio_subtitle')"></p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex items-center gap-1.5 p-1 rounded-xl bg-zinc-900 border border-zinc-800 self-start md:self-auto">
+          <button @click="activeTab = 'all'" 
+                  :class="activeTab === 'all' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40' : 'text-zinc-400 hover:text-white border-transparent'"
+                  class="px-4 py-2 rounded-lg text-xs font-mono font-medium border transition-all duration-200"
+                  x-text="$store.app.t('tab_all')"></button>
+          <button @click="activeTab = 'saas'" 
+                  :class="activeTab === 'saas' ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/40' : 'text-zinc-400 hover:text-white border-transparent'"
+                  class="px-4 py-2 rounded-lg text-xs font-mono font-medium border transition-all duration-200"
+                  x-text="$store.app.t('tab_web')"></button>
+          <button @click="activeTab = 'game'" 
+                  :class="activeTab === 'game' ? 'bg-purple-500/20 text-purple-300 border-purple-500/40' : 'text-zinc-400 hover:text-white border-transparent'"
+                  class="px-4 py-2 rounded-lg text-xs font-mono font-medium border transition-all duration-200"
+                  x-text="$store.app.t('tab_game')"></button>
+        </div>
+      </div>
+
+      <!-- Portfolio Grid (Clean Presentation - No Buttons, No Modals) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
+        <template x-for="project in filteredProjects" :key="project.id">
+          <div class="spotlight-card rounded-2xl bg-cardDark border border-zinc-800/80 overflow-hidden group hover:border-zinc-700 transition-all duration-300 flex flex-col justify-between">
+            
+            <div>
+              <!-- Visual Mockup Image (Görsel Entegrasyonu) -->
+              <div class="relative overflow-hidden aspect-[16/10] bg-zinc-950 border-b border-zinc-800/80">
+                <img :src="project.image" 
+                     :alt="project.name" 
+                     onerror="this.onerror=null; this.src=this.getAttribute('data-fallback');"
+                     :data-fallback="project.fallbackImage"
+                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+                
+                <div class="absolute inset-0 bg-gradient-to-t from-cardDark via-transparent to-transparent opacity-60"></div>
+                
+                <!-- Category Badge -->
+                <div class="absolute top-4 left-4 backdrop-blur-md bg-zinc-900/90 border border-zinc-700/80 px-3 py-1 rounded-full text-xs font-mono text-cyan-300 font-semibold shadow-lg">
+                  <span x-text="$store.app.lang === 'tr' ? project.badge_tr : project.badge_en"></span>
+                </div>
+              </div>
+
+              <!-- Project Info -->
+              <div class="p-6 sm:p-8">
+                <div class="mb-3">
+                  <h3 class="font-heading font-black text-2xl text-white group-hover:text-cyan-400 transition-colors" x-text="project.name"></h3>
+                </div>
+
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6" 
+                   x-text="$store.app.lang === 'tr' ? project.desc_tr : project.desc_en"></p>
+
+                <!-- Project Quick Stats Pills -->
+                <div class="grid grid-cols-3 gap-2 mb-6">
+                  <template x-for="st in project.stats" :key="st.value">
+                    <div class="p-2.5 rounded-lg bg-zinc-900/80 border border-zinc-800 text-center">
+                      <div class="text-sm font-heading font-bold text-cyan-300" x-text="st.value"></div>
+                      <div class="text-[10px] text-zinc-500 font-mono mt-0.5" x-text="$store.app.lang === 'tr' ? st.label_tr : st.label_en"></div>
+                    </div>
+                  </template>
+                </div>
+
+                <!-- Tech Tags -->
+                <div class="flex flex-wrap gap-1.5">
+                  <template x-for="tag in project.tags" :key="tag">
+                    <span class="px-2.5 py-1 rounded bg-zinc-900 border border-zinc-800/80 text-[11px] font-mono text-zinc-300" x-text="tag"></span>
+                  </template>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </template>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       PROCESS SECTION (AGILE WORKFLOW)
+       ===================================================================== -->
+  <section id="process" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/20 bg-cyan-950/30 text-xs font-mono text-cyan-400 mb-3">
+          <i data-lucide="git-branch" class="w-3.5 h-3.5"></i>
+          <span x-text="$store.app.t('process_tag')"></span>
+        </div>
+        <h2 class="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight mb-4" 
+            x-text="$store.app.t('process_title')"></h2>
+        <p class="text-zinc-400 text-base sm:text-lg" 
+           x-text="$store.app.t('process_subtitle')"></p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Step 1 -->
+        <div class="p-6 rounded-2xl bg-cardDark border border-zinc-800 relative group hover:border-cyan-500/40 transition-colors">
+          <div class="text-4xl font-heading font-black text-zinc-800 group-hover:text-cyan-500/30 transition-colors mb-4" x-text="$store.app.t('process_1_num')"></div>
+          <h3 class="font-heading font-bold text-lg text-white mb-2" x-text="$store.app.t('process_1_title')"></h3>
+          <p class="text-zinc-400 text-xs leading-relaxed" x-text="$store.app.t('process_1_desc')"></p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-6 rounded-2xl bg-cardDark border border-zinc-800 relative group hover:border-cyan-500/40 transition-colors">
+          <div class="text-4xl font-heading font-black text-zinc-800 group-hover:text-cyan-500/30 transition-colors mb-4" x-text="$store.app.t('process_2_num')"></div>
+          <h3 class="font-heading font-bold text-lg text-white mb-2" x-text="$store.app.t('process_2_title')"></h3>
+          <p class="text-zinc-400 text-xs leading-relaxed" x-text="$store.app.t('process_2_desc')"></p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-6 rounded-2xl bg-cardDark border border-zinc-800 relative group hover:border-purple-500/40 transition-colors">
+          <div class="text-4xl font-heading font-black text-zinc-800 group-hover:text-purple-500/30 transition-colors mb-4" x-text="$store.app.t('process_3_num')"></div>
+          <h3 class="font-heading font-bold text-lg text-white mb-2" x-text="$store.app.t('process_3_title')"></h3>
+          <p class="text-zinc-400 text-xs leading-relaxed" x-text="$store.app.t('process_3_desc')"></p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="p-6 rounded-2xl bg-cardDark border border-zinc-800 relative group hover:border-cyan-500/40 transition-colors">
+          <div class="text-4xl font-heading font-black text-zinc-800 group-hover:text-cyan-500/30 transition-colors mb-4" x-text="$store.app.t('process_4_num')"></div>
+          <h3 class="font-heading font-bold text-lg text-white mb-2" x-text="$store.app.t('process_4_title')"></h3>
+          <p class="text-zinc-400 text-xs leading-relaxed" x-text="$store.app.t('process_4_desc')"></p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       CONTACT SECTION
+       (Kullanıcı İsteği: Mesaj gönderme formu kaldırıldı,
+        e-posta emirhan@emtinastudio.com, telefon +90 850 346 16 83, lokasyon Tekirdağ,
+        çalışma durumu kaldırıldı)
+       ===================================================================== -->
+  <section id="contact" class="py-24 relative z-10 bg-zinc-950/50 border-t border-zinc-900" x-data="contactInfo">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      
+      <!-- Section Header -->
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/20 bg-cyan-950/30 text-xs font-mono text-cyan-400 mb-4">
+        <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+        <span x-text="$store.app.t('contact_tag')"></span>
+      </div>
+      <h2 class="font-heading font-black text-3xl sm:text-5xl text-white tracking-tight mb-4" 
+          x-text="$store.app.t('contact_title')"></h2>
+      <p class="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto mb-16 leading-relaxed" 
+         x-text="$store.app.t('contact_subtitle')"></p>
+
+      <!-- 3 Direct Contact Cards (Centered & Balanced Layout) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+        
+        <!-- 1. E-Posta Card -->
+        <div class="spotlight-card p-6 rounded-2xl bg-cardDark border border-zinc-800 flex flex-col justify-between hover:border-cyan-500/40 transition-colors">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-5">
+              <i data-lucide="mail" class="w-6 h-6"></i>
+            </div>
+            <div class="text-xs text-zinc-500 font-mono uppercase tracking-wider mb-1" x-text="$store.app.t('contact_email_title')"></div>
+            <a href="mailto:emirhan@emtinastudio.com" class="text-base font-mono font-bold text-white hover:text-cyan-400 transition-colors block break-all">
+              emirhan@emtinastudio.com
+            </a>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+            <button @click="copyEmail()" 
+                    type="button" 
+                    class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700 text-xs font-mono text-zinc-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-colors flex items-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span x-text="copiedEmail ? $store.app.t('copied_btn') : $store.app.t('copy_btn')"></span>
+            </button>
+
+            <a href="mailto:emirhan@emtinastudio.com" 
+               class="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1 font-semibold">
+              <span x-text="$store.app.t('email_cta')"></span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Telefon & WhatsApp Card -->
+        <div class="spotlight-card p-6 rounded-2xl bg-cardDark border border-zinc-800 flex flex-col justify-between hover:border-emerald-500/40 transition-colors">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-5">
+              <i data-lucide="phone" class="w-6 h-6"></i>
+            </div>
+            <div class="text-xs text-zinc-500 font-mono uppercase tracking-wider mb-1" x-text="$store.app.t('contact_phone_title')"></div>
+            <a href="tel:+908503461683" class="text-base font-mono font-bold text-white hover:text-emerald-400 transition-colors block">
+              +90 850 346 16 83
+            </a>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+            <button @click="copyPhone()" 
+                    type="button" 
+                    class="px-3 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700 text-xs font-mono text-zinc-300 hover:text-emerald-400 hover:border-emerald-500/50 transition-colors flex items-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span x-text="copiedPhone ? $store.app.t('copied_btn') : $store.app.t('copy_btn')"></span>
+            </button>
+
+            <a href="https://wa.me/908503461683" target="_blank" rel="noopener noreferrer" 
+               class="text-xs font-mono text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-semibold">
+              <span>WhatsApp</span>
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. Lokasyon Card -->
+        <div class="spotlight-card p-6 rounded-2xl bg-cardDark border border-zinc-800 flex flex-col justify-between hover:border-purple-500/40 transition-colors">
+          <div>
+            <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-5">
+              <i data-lucide="map-pin" class="w-6 h-6"></i>
+            </div>
+            <div class="text-xs text-zinc-500 font-mono uppercase tracking-wider mb-1" x-text="$store.app.t('contact_location_title')"></div>
+            <div class="text-base font-mono font-bold text-white">
+              Tekirdağ
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-zinc-800/80 flex items-center justify-between">
+            <span class="text-xs font-mono text-zinc-400">Türkiye / Global Remote</span>
+            <div class="w-2 h-2 rounded-full bg-cyan-400 pulse-dot"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       FOOTER
+       (Kullanıcı İsteği: "Crafted with passion..." kaldırıldı, 
+        "Emtina Studio © 2026" ortalı ve "tüm hakları saklıdır" kaldırıldı)
+       ===================================================================== -->
+  <footer class="py-12 relative z-10 bg-obsidian border-t border-zinc-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Top Section: Brand & Socials -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-zinc-900">
+        
+        <!-- Logo Brand (Işıltısız net ikon, STUDIO rengi cyan-400) -->
+        <div class="flex items-center gap-3">
+          <img src="assets/images/logo.png" alt="Emtina Logo" class="h-8 w-auto">
+          <div class="flex items-baseline tracking-tight select-none">
+            <span class="font-heading font-black text-xl text-white">EMTINA</span>
+            <span class="font-heading font-extralight text-xl text-cyan-400 ml-1">STUDIO</span>
+          </div>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="flex items-center gap-4 text-zinc-400">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-zinc-900 hover:text-cyan-400 transition-colors" title="GitHub">
+            <i data-lucide="github" class="w-5 h-5"></i>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-zinc-900 hover:text-cyan-400 transition-colors" title="LinkedIn">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-zinc-900 hover:text-cyan-400 transition-colors" title="Twitter / X">
+            <i data-lucide="twitter" class="w-5 h-5"></i>
+          </a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-zinc-900 hover:text-cyan-400 transition-colors" title="Instagram">
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Copyright Centered (Ortalı Emtina Studio © 2026, tüm hakları saklıdır kaldırıldı) -->
+      <div class="pt-8 text-center">
+        <div class="text-sm font-mono text-zinc-400" x-text="$store.app.t('footer_copyright')">Emtina Studio © 2026</div>
+      </div>
+
+    </div>
+  </footer>
 
 </body>
 </html>

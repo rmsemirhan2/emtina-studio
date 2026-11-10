@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="odakBg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#18181b" />
+      <stop offset="50%" stop-color="#09090b" />
+      <stop offset="100%" stop-color="#000000" />
+    </radialGradient>
+    <linearGradient id="glowRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" />
+      <stop offset="50%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="odakGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#odakBg)" rx="16"/>
+
+  <!-- Top minimalist header -->
+  <rect x="40" y="30" width="720" height="50" rx="10" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <text x="65" y="60" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="900" letter-spacing="4">O . D . A . K .</text>
+  <text x="220" y="60" fill="#71717a" font-family="sans-serif" font-size="12">Deep Work &amp; Cognitive Flow State Engine</text>
+  <rect x="630" y="42" width="110" height="26" rx="13" fill="#8b5cf6" fill-opacity="0.2" stroke="#8b5cf6" stroke-width="1"/>
+  <circle cx="645" cy="55" r="4" fill="#a855f7" />
+  <text x="658" y="59" fill="#c084fc" font-family="sans-serif" font-size="11" font-weight="bold">DERİN AKIŞ</text>
+
+  <!-- Big Central Focus Timer Ring -->
+  <circle cx="300" cy="270" r="120" fill="none" stroke="#27272a" stroke-width="8"/>
+  <circle cx="300" cy="270" r="120" fill="none" stroke="url(#glowRing)" stroke-width="8" stroke-dasharray="754" stroke-dashoffset="190" stroke-linecap="round" filter="url(#odakGlow)"/>
+  <circle cx="300" cy="270" r="120" fill="none" stroke="url(#glowRing)" stroke-width="6" stroke-dasharray="754" stroke-dashoffset="190" stroke-linecap="round"/>
+
+  <!-- Timer Inside -->
+  <text x="300" y="255" fill="#71717a" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle" letter-spacing="2">KALAN SÜRE</text>
+  <text x="300" y="295" fill="#ffffff" font-family="sans-serif" font-size="44" font-weight="900" text-anchor="middle" font-feature-settings="tnum">37:45</text>
+  <text x="300" y="325" fill="#06b6d4" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Alfa Dalgaları (10 Hz Bimodal)</text>
+
+  <!-- Right Side Analytics & Modules -->
+  <rect x="470" y="110" width="290" height="105" rx="12" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <text x="490" y="135" fill="#a1a1aa" font-family="sans-serif" font-size="11" font-weight="bold">GÜNLÜK ODAKLANMA HEDEFİ</text>
+  <text x="490" y="170" fill="#ffffff" font-family="sans-serif" font-size="24" font-weight="900">4s 25dk / 5s 00dk</text>
+  <!-- Progress bar -->
+  <rect x="490" y="185" width="250" height="8" rx="4" fill="#27272a"/>
+  <rect x="490" y="185" width="220" height="8" rx="4" fill="url(#glowRing)"/>
+
+  <rect x="470" y="235" width="290" height="105" rx="12" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <text x="490" y="260" fill="#a1a1aa" font-family="sans-serif" font-size="11" font-weight="bold">ORTAM SES SENTEZLEYİCİ</text>
+  <text x="490" y="285" fill="#38bdf8" font-family="sans-serif" font-size="13" font-weight="bold">&bull; Yağmur &amp; Siber Şehir Ambiyansı</text>
+  <text x="490" y="305" fill="#71717a" font-family="sans-serif" font-size="11">Aktif Gürültü İzolasyonu Açık</text>
+  <!-- Mini audio wave -->
+  <path d="M 490 325 Q 510 315 530 325 T 570 325 T 610 325 T 650 325 T 690 325 T 730 325" fill="none" stroke="#8b5cf6" stroke-width="2"/>
+
+  <rect x="470" y="360" width="290" height="105" rx="12" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+  <text x="490" y="385" fill="#a1a1aa" font-family="sans-serif" font-size="11" font-weight="bold">DİKKAT DAĞITICI BLOKER</text>
+  <text x="490" y="410" fill="#10b981" font-family="sans-serif" font-size="13" font-weight="bold">&check; 42 Site &amp; Bildirim Sessize Alındı</text>
+  <text x="490" y="430" fill="#71717a" font-family="sans-serif" font-size="11">Dopamin döngüsü koruma modu devrede</text>
+</svg>
